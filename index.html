@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Жердің жасанды серіктерінің қозғалысы — Презентация</title>
+  <style>
+    :root{
+      --bg:#07120b; /* very dark */
+      --green:#1fa65a; /* main green */
+      --accent:#0f3d2b;
+      --card:#0b1a15;
+      --glass: rgba(255,255,255,0.03);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#06120e 60%);color:#d7f3e3}
+    /* page layout */
+    .wrap{max-width:1100px;margin:30px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--green),#14a048);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(15,60,43,0.45)}
+    .logo b{font-size:22px;color:#02120a}
+    h1{margin:0;font-size:26px}
+    p.lead{opacity:0.85;margin-top:6px}
+
+    /* layout grid */
+    .main{display:grid;grid-template-columns:1fr 420px;gap:24px;margin-top:22px}
+
+    /* left: slides/content */
+    .slides{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .slide{min-height:320px;padding:18px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);margin-bottom:12px}
+    .slide h2{margin:0 0 8px 0;color:var(--green)}
+    .controls{display:flex;gap:8px;align-items:center;margin-top:8px}
+    .btn{background:var(--green);color:#02120a;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;box-shadow:0 6px 14px rgba(31,166,90,0.18)}
+
+    /* right: 3D area + info */
+    .right{display:flex;flex-direction:column;gap:12px}
+    .viewer{border-radius:12px;overflow:hidden;background:var(--glass);min-height:420px;display:flex;align-items:center;justify-content:center}
+    .notes{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:12px}
+
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;opacity:0.9}
+    .by{font-weight:700;color:var(--green)}
+
+    /* responsive */
+    @media (max-width:980px){.main{grid-template-columns:1fr;}.viewer{min-height:320px}}
+
+    /* small accent */
+    .chip{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px}
+
+    /* minimal slide nav */
+    nav.slide-nav{display:flex;gap:6px;flex-wrap:wrap}
+    nav.slide-nav button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:inherit;cursor:pointer}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><b>GG</b></div>
+      <div>
+        <h1>Жердің жасанды серіктерінің қозғалысы</h1>
+        <p class="lead">Интерактивті презентация — 3D модель астронавт қосылған. Құрастырған: <span class="by">Сделал: Мирас</span></p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="slides">
+        <div id="slideContainer">
+          <article class="slide" data-i="0">
+            <h2>Кіріспе</h2>
+            <p>Жердің жасанды серіктері — байланыс, навигация, ғылыми бақылаулар мен әскери мақсаттар үшін қолданылатын жасанды нысандар. Бұл презентацияда біз олардың орбиталық қозғалысын қарастырамыз.</p>
+          </article>
+
+          <article class="slide" data-i="1">
+            <h2>Орбиталардың түрлері</h2>
+            <ul>
+              <li>Төмен орбиталар (LEO)</li>
+              <li>Орташа орбиталар (MEO)</li>
+              <li>Геостационарлық орбита (GEO)</li>
+              <li>Эллипс тәрізді орбиталар</li>
+            </ul>
+          </article>
+
+          <article class="slide" data-i="2">
+            <h2>Кеплер заңдары</h2>
+            <ol>
+              <li>Орбита эллипс пішінді, Күн (немесе Жер) фокустың бірінде орналасады.</li>
+              <li>Радиус-вектор бірдей уақыт аралығында тең ауданды жазады.</li>
+              <li>Орбитаның периоды орбита үлкендігіне тәуелді: T^2 ∝ a^3.</li>
+            </ol>
+          </article>
+
+          <article class="slide" data-i="3">
+            <h2>Серіктердің қозғалысын есептеу</h2>
+            <p>Орбиталық жылдамдықты анықтау үшін: <code>v = sqrt(μ(2/r - 1/a))</code>. Мұндағы μ — орталық дененің гравитациялық параметрі.</p>
+          </article>
+
+          <article class="slide" data-i="4">
+            <h2>Қолданылуы</h2>
+            <p>Серіктер: байланыс, ауа райын болжау, GPS, жерді бақылау және ғылыми зерттеулерде қолданылады.</p>
+          </article>
+
+          <article class="slide" data-i="5">
+            <h2>Қорытынды</h2>
+            <p>Жердің жасанды серіктері біздің күнделікті өмірімізге терең әсер етеді — байланыс, навигация және ғылымның негізі болып табылады.</p>
+          </article>
+
+        </div>
+
+        <div class="controls">
+          <button class="btn" id="prev">Алдыңғы</button>
+          <button class="btn" id="next">Келесі</button>
+          <div style="flex:1"></div>
+          <div class="chip">Слайд: <span id="index">1</span>/<span id="total"></span></div>
+        </div>
+
+        <nav class="slide-nav" id="navDots"></nav>
+      </section>
+
+      <aside class="right">
+        <div class="viewer" id="viewer">
+          <div class="sketchfab-embed-wrapper" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+            <iframe title="Astronaut" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/0d91e691923d41158abfcc18bef29d01/embed" style="width:100%;height:100%;min-height:360px;border:0;border-radius:8px;" ></iframe>
+            <div style="position:absolute;bottom:8px;left:8px;font-size:13px;color:rgba(255,255,255,0.7);">
+              <a href="https://sketchfab.com/3d-models/astronaut-0d91e691923d41158abfcc18bef29d01?utm_medium=embed&utm_campaign=share-popup&utm_content=0d91e691923d41158abfcc18bef29d01" target="_blank" rel="nofollow" style="font-weight:700;color:var(--green);">Astronaut</a> by <a href="https://sketchfab.com/saiynmiras?utm_medium=embed&utm_campaign=share-popup&utm_content=0d91e691923d41158abfcc18bef29d01" target="_blank" rel="nofollow" style="font-weight:700;color:var(--green);">saiynmiras</a>
+            </div>
+          </div>
+        </div>
+            <div style="margin-top:12px;opacity:0.6">Sketchfab кодын оң жақтағы баптауға қойыңыз немесе маған кодты жіберіңіз, мен қосаын.</div>
+          </div>
+        </div>
+
+        <div class="notes">
+          <h3>Жылжу басқармасы</h3>
+          <p>Сол жақтағы «Келесі» және «Алдыңғы» батырмаларын қолданып слайдтарды ауыстырыңыз. 3D моделді айналдырып көру үшін <b>Sketchfab</b> кодын төмендегі орынға қойыңыз.</p>
+          <p style="font-size:13px;opacity:0.9">Егер сен маған Sketchfab-тан алынған <code>iframe</code> немесе embed кодын жіберсең, мен оны автоматты түрде осы блокқа қойып, өлшемдерді реттеймін.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="chip">GreenGamesStudio — презентация</div>
+      <div class="by">Сделал: Мирас</div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple slide system
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    document.getElementById('total').textContent = total;
+    let cur = 0;
+    function show(i){
+      if(i<0) i=0; if(i>=total) i=total-1;
+      cur=i;
+      slides.forEach(s=>s.style.display='none');
+      slides[cur].style.display='block';
+      document.getElementById('index').textContent = cur+1;
+      // highlight nav
+      document.querySelectorAll('#navDots button').forEach((b,idx)=>{
+        b.style.opacity = idx===cur?1:0.5;
+      });
+    }
+    document.getElementById('prev').onclick=()=>show(cur-1);
+    document.getElementById('next').onclick=()=>show(cur+1);
+
+    // build nav
+    const nav = document.getElementById('navDots');
+    slides.forEach((s,idx)=>{
+      const b = document.createElement('button');
+      b.textContent = 'Слайд ' + (idx+1);
+      b.onclick = ()=>show(idx);
+      nav.appendChild(b);
+    });
+
+    // init
+    show(0);
+
+    // Small helper: accept a Sketchfab iframe pasted to the page by the user
+    // If the user later pastes an iframe into the viewer div, the iframe will auto-scale.
+    // You can paste the iframe directly into the HTML at the comment placeholder.
+  </script>
+</body>
+</html>
