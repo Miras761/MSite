@@ -1,183 +1,586 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Жердің жасанды серіктерінің қозғалысы — Презентация</title>
-  <style>
-    :root{
-      --bg:#07120b; /* very dark */
-      --green:#1fa65a; /* main green */
-      --accent:#0f3d2b;
-      --card:#0b1a15;
-      --glass: rgba(255,255,255,0.03);
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#06120e 60%);color:#d7f3e3}
-    /* page layout */
-    .wrap{max-width:1100px;margin:30px auto;padding:28px}
-    header{display:flex;align-items:center;gap:18px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--green),#14a048);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(15,60,43,0.45)}
-    .logo b{font-size:22px;color:#02120a}
-    h1{margin:0;font-size:26px}
-    p.lead{opacity:0.85;margin-top:6px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жердің жасанды серіктерінің қозғалысы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* layout grid */
-    .main{display:grid;grid-template-columns:1fr 420px;gap:24px;margin-top:22px}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #00ff88;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    /* left: slides/content */
-    .slides{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .slide{min-height:320px;padding:18px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);margin-bottom:12px}
-    .slide h2{margin:0 0 8px 0;color:var(--green)}
-    .controls{display:flex;gap:8px;align-items:center;margin-top:8px}
-    .btn{background:var(--green);color:#02120a;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;box-shadow:0 6px 14px rgba(31,166,90,0.18)}
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    /* right: 3D area + info */
-    .right{display:flex;flex-direction:column;gap:12px}
-    .viewer{border-radius:12px;overflow:hidden;background:var(--glass);min-height:420px;display:flex;align-items:center;justify-content:center}
-    .notes{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:16px;border-radius:12px}
+        .star {
+            position: absolute;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
 
-    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;opacity:0.9}
-    .by{font-weight:700;color:var(--green)}
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
 
-    /* responsive */
-    @media (max-width:980px){.main{grid-template-columns:1fr;}.viewer{min-height:320px}}
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    /* small accent */
-    .chip{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px}
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(10, 14, 39, 0.8) 100%);
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
 
-    /* minimal slide nav */
-    nav.slide-nav{display:flex;gap:6px;flex-wrap:wrap}
-    nav.slide-nav button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:inherit;cursor:pointer}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  </style>
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 40px rgba(0, 255, 136, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+        }
+
+        section {
+            background: linear-gradient(135deg, rgba(0, 40, 30, 0.6) 0%, rgba(0, 20, 15, 0.8) 100%);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 255, 136, 0.4);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #00ffaa;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.4);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            color: #00ffaa;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #88ffbb;
+            text-align: justify;
+        }
+
+        .formula-box {
+            background: rgba(0, 50, 35, 0.7);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.3em;
+            color: #00ffaa;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .highlight {
+            background: rgba(0, 255, 136, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #00ffdd;
+            font-weight: bold;
+        }
+
+        .model-container {
+            background: rgba(0, 30, 20, 0.5);
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 60px 0;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
+        }
+
+        .model-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sketchfab-embed-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sketchfab-embed-wrapper iframe {
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .orbit-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .orbit-card {
+            background: rgba(0, 50, 35, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .orbit-card:hover {
+            background: rgba(0, 70, 50, 0.8);
+            border-color: #00ff88;
+            transform: scale(1.05);
+        }
+
+        .orbit-card h3 {
+            color: #00ffaa;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            margin-top: 0;
+        }
+
+        .kepler-laws {
+            list-style: none;
+            padding: 0;
+        }
+
+        .kepler-laws li {
+            background: rgba(0, 40, 30, 0.5);
+            border-left: 4px solid #00ff88;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .kepler-laws li:hover {
+            background: rgba(0, 60, 45, 0.7);
+            border-left-width: 8px;
+            transform: translateX(10px);
+        }
+
+        .applications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .app-tag {
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid #00ff88;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .app-tag:hover {
+            background: rgba(0, 255, 136, 0.4);
+            transform: scale(1.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .info-card {
+            background: rgba(0, 45, 32, 0.6);
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(0, 60, 45, 0.8);
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .info-card h4 {
+            color: #00ffaa;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .info-card p {
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        footer {
+            text-align: right;
+            padding: 30px 20px;
+            font-size: 0.95em;
+            color: #00ffaa;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .orbit-types {
+                grid-template-columns: 1fr;
+            }
+
+            .model-container {
+                padding: 15px;
+            }
+
+            .sketchfab-embed-wrapper iframe {
+                height: 350px;
+            }
+
+            .formula-box {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            header {
+                padding: 50px 15px 40px;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .formula-box {
+                font-size: 1em;
+            }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 40px rgba(0, 255, 136, 0.5);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo"><b>GG</b></div>
-      <div>
-        <h1>Жердің жасанды серіктерінің қозғалысы</h1>
-        <p class="lead">Интерактивті презентация — 3D модель астронавт қосылған. Құрастырған: <span class="by">Сделал: Мирас</span></p>
-      </div>
-    </header>
+    <div class="stars" id="stars"></div>
 
-    <main class="main">
-      <section class="slides">
-        <div id="slideContainer">
-          <article class="slide" data-i="0">
+    <div class="container">
+        <header>
+            <h1 class="glow">Жердің жасанды серіктерінің қозғалысы</h1>
+            <p class="subtitle">9-сынып физика | 21-параграф</p>
+        </header>
+
+        <section>
             <h2>Кіріспе</h2>
-            <p>Жердің жасанды серіктері — байланыс, навигация, ғылыми бақылаулар мен әскери мақсаттар үшін қолданылатын жасанды нысандар. Бұл презентацияда біз олардың орбиталық қозғалысын қарастырамыз.</p>
-          </article>
+            <p>
+                Жасанды серік дегеніміз — адам жасаған ғарыштық аппарат, ол Жердің немесе басқа аспан денесінің айналасында орбитада қозғалады. Серіктердің қозғалысы аспан механикасының заңдарына бағынады және үлкен практикалық маңызға ие.
+            </p>
+            <p>
+                Алғашқы жасанды серік <span class="highlight">«Спутник-1»</span> 1957 жылы 4 қазанда СССР-да ұшырылды. Бұл адамзат тарихындағы ұлы оқиға болды. Содан бері мыңдаған серіктер Жер орбитасына шығарылды және олар қазіргі өркениеттің ажырамас бөлігіне айналды.
+            </p>
+            <p>
+                Серіктердің қозғалысын түсіну үшін космостық жылдамдықтар, орбиталық механика және Кеплер заңдары туралы білу қажет. Бұл білімдер жаңа ғарыштық миссияларды жоспарлауға және серіктердің қауіпсіз жұмысын қамтамасыз етуге көмектеседі.
+            </p>
+        </section>
 
-          <article class="slide" data-i="1">
-            <h2>Орбиталардың түрлері</h2>
-            <ul>
-              <li>Төмен орбиталар (LEO)</li>
-              <li>Орташа орбиталар (MEO)</li>
-              <li>Геостационарлық орбита (GEO)</li>
-              <li>Эллипс тәрізді орбиталар</li>
-            </ul>
-          </article>
-
-          <article class="slide" data-i="2">
-            <h2>Кеплер заңдары</h2>
-            <ol>
-              <li>Орбита эллипс пішінді, Күн (немесе Жер) фокустың бірінде орналасады.</li>
-              <li>Радиус-вектор бірдей уақыт аралығында тең ауданды жазады.</li>
-              <li>Орбитаның периоды орбита үлкендігіне тәуелді: T^2 ∝ a^3.</li>
-            </ol>
-          </article>
-
-          <article class="slide" data-i="3">
-            <h2>Серіктердің қозғалысын есептеу</h2>
-            <p>Орбиталық жылдамдықты анықтау үшін: <code>v = sqrt(μ(2/r - 1/a))</code>. Мұндағы μ — орталық дененің гравитациялық параметрі.</p>
-          </article>
-
-          <article class="slide" data-i="4">
-            <h2>Қолданылуы</h2>
-            <p>Серіктер: байланыс, ауа райын болжау, GPS, жерді бақылау және ғылыми зерттеулерде қолданылады.</p>
-          </article>
-
-          <article class="slide" data-i="5">
-            <h2>Қорытынды</h2>
-            <p>Жердің жасанды серіктері біздің күнделікті өмірімізге терең әсер етеді — байланыс, навигация және ғылымның негізі болып табылады.</p>
-          </article>
-
-        </div>
-
-        <div class="controls">
-          <button class="btn" id="prev">Алдыңғы</button>
-          <button class="btn" id="next">Келесі</button>
-          <div style="flex:1"></div>
-          <div class="chip">Слайд: <span id="index">1</span>/<span id="total"></span></div>
-        </div>
-
-        <nav class="slide-nav" id="navDots"></nav>
-      </section>
-
-      <aside class="right">
-        <div class="viewer" id="viewer">
-          <div class="sketchfab-embed-wrapper" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
-            <iframe title="Astronaut" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/0d91e691923d41158abfcc18bef29d01/embed" style="width:100%;height:100%;min-height:360px;border:0;border-radius:8px;" ></iframe>
-            <div style="position:absolute;bottom:8px;left:8px;font-size:13px;color:rgba(255,255,255,0.7);">
-              <a href="https://sketchfab.com/3d-models/astronaut-0d91e691923d41158abfcc18bef29d01?utm_medium=embed&utm_campaign=share-popup&utm_content=0d91e691923d41158abfcc18bef29d01" target="_blank" rel="nofollow" style="font-weight:700;color:var(--green);">Astronaut</a> by <a href="https://sketchfab.com/saiynmiras?utm_medium=embed&utm_campaign=share-popup&utm_content=0d91e691923d41158abfcc18bef29d01" target="_blank" rel="nofollow" style="font-weight:700;color:var(--green);">saiynmiras</a>
+        <section>
+            <h2>Космостық жылдамдықтар</h2>
+            
+            <h3>Бірінші космостық жылдамдық</h3>
+            <p>
+                <span class="highlight">Бірінші космостық жылдамдық (v₁)</span> — бұл дененің Жердің айналасында дөңгелек орбита бойымен қозғалуы үшін қажетті ең аз жылдамдық. Жер бетінде бұл жылдамдық шамамен <span class="highlight">7,9 км/с</span> немесе <span class="highlight">28 440 км/сағ</span> құрайды.
+            </p>
+            
+            <div class="formula-box">
+                v₁ = √(GM/R) ≈ 7,9 км/с
             </div>
-          </div>
+
+            <p>
+                Мұндағы: <strong>G</strong> — гравитациялық тұрақты (6,67·10⁻¹¹ Н·м²/кг²), <strong>M</strong> — Жердің массасы (6·10²⁴ кг), <strong>R</strong> — Жердің радиусы (6400 км).
+            </p>
+
+            <h3>Екінші космостық жылдамдық</h3>
+            <p>
+                <span class="highlight">Екінші космостық жылдамдық (v₂)</span> — бұл дененің Жердің тартылыс күшінен толық босап, Күн жүйесінде қозғала алуы үшін қажетті жылдамдық. Жер бетінде ол шамамен <span class="highlight">11,2 км/с</span> немесе <span class="highlight">40 320 км/сағ</span> құрайды.
+            </p>
+            
+            <div class="formula-box">
+                v₂ = √(2GM/R) ≈ 11,2 км/с
+            </div>
+
+            <p>
+                Екінші космостық жылдамдық бірінші космостық жылдамдықтан √2 есе үлкен. Басқа планеталарға ұшу үшін дәл осы жылдамдыққа жету керек.
+            </p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>🚀 Бірінші космостық жылдамдық</h4>
+                    <p><strong>7,9 км/с</strong></p>
+                    <p>Жер орбитасында айналу үшін</p>
+                </div>
+                <div class="info-card">
+                    <h4>🌌 Екінші космостық жылдамдық</h4>
+                    <p><strong>11,2 км/с</strong></p>
+                    <p>Жерден босап шығу үшін</p>
+                </div>
+                <div class="info-card">
+                    <h4>☀️ Үшінші космостық жылдамдық</h4>
+                    <p><strong>16,7 км/с</strong></p>
+                    <p>Күн жүйесінен шығу үшін</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="model-container">
+            <h2>3D Модель: Жасанды серік</h2>
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="satelite" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport
+                execution-while-not-rendered web-share
+                src="https://sketchfab.com/models/442c9bc77dbd4086a805920b9c726881/embed"
+                style="width:100%;height:500px;border:0;border-radius:10px;">
+                </iframe>
+                <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #00ff88; text-align: center;">
+                    <a href="https://sketchfab.com/3d-models/satelite-442c9bc77dbd4086a805920b9c726881?utm_medium=embed&utm_campaign=share-popup&utm_content=442c9bc77dbd4086a805920b9c726881" target="_blank" rel="nofollow" style="font-weight: bold; color: #00ffaa;">
+                        satelite
+                    </a> by
+                    <a href="https://sketchfab.com/saiynmiras?utm_medium=embed&utm_campaign=share-popup&utm_content=442c9bc77dbd4086a805920b9c726881" target="_blank" rel="nofollow" style="font-weight: bold; color: #00ffaa;">
+                        saiynmiras
+                    </a> on
+                    <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=442c9bc77dbd4086a805920b9c726881" target="_blank" rel="nofollow" style="font-weight: bold; color: #00ffaa;">
+                        Sketchfab
+                    </a>
+                </p>
+            </div>
         </div>
-            <div style="margin-top:12px;opacity:0.6">Sketchfab кодын оң жақтағы баптауға қойыңыз немесе маған кодты жіберіңіз, мен қосаын.</div>
-          </div>
-        </div>
 
-        <div class="notes">
-          <h3>Жылжу басқармасы</h3>
-          <p>Сол жақтағы «Келесі» және «Алдыңғы» батырмаларын қолданып слайдтарды ауыстырыңыз. 3D моделді айналдырып көру үшін <b>Sketchfab</b> кодын төмендегі орынға қойыңыз.</p>
-          <p style="font-size:13px;opacity:0.9">Егер сен маған Sketchfab-тан алынған <code>iframe</code> немесе embed кодын жіберсең, мен оны автоматты түрде осы блокқа қойып, өлшемдерді реттеймін.</p>
-        </div>
-      </aside>
-    </main>
+        <section>
+            <h2>Орбиталардың түрлері</h2>
+            <p>
+                Жасанды серіктер әртүрлі биіктіктегі және қасиеттердегі орбиталарда орналастырылады. Әрбір орбита түрінің өзіндік артықшылықтары мен қолданылу аясы бар:
+            </p>
+            
+            <div class="orbit-types">
+                <div class="orbit-card">
+                    <h3>🌍 Төмен орбита (LEO)</h3>
+                    <p><strong>Биіктігі:</strong> 160-2000 км</p>
+                    <p><strong>Айналу периоды:</strong> 90-120 минут</p>
+                    <p><strong>Қолданылуы:</strong> Жерді зерттеу, ғарыш станциялары, жер бетін түсіру</p>
+                    <p><strong>Мысалдар:</strong> ХҒС, Жер бақылау серіктері</p>
+                </div>
+                
+                <div class="orbit-card">
+                    <h3>🛰️ Орташа орбита (MEO)</h3>
+                    <p><strong>Биіктігі:</strong> 2000-35786 км</p>
+                    <p><strong>Айналу периоды:</strong> 2-24 сағат</p>
+                    <p><strong>Қолданылуы:</strong> Навигациялық жүйелер</p>
+                    <p><strong>Мысалдар:</strong> GPS, ГЛОНАСС, Galileo</p>
+                </div>
+                
+                <div class="orbit-card">
+                    <h3>📡 Геостационарлық орбита (GEO)</h3>
+                    <p><strong>Биіктігі:</strong> 35786 км</p>
+                    <p><strong>Айналу периоды:</strong> 24 сағат</p>
+                    <p><strong>Қолданылуы:</strong> Байланыс, метеорология</p>
+                    <p><strong>Ерекшелігі:</strong> Жердің бір нүктесінде тұрады</p>
+                </div>
+                
+                <div class="orbit-card">
+                    <h3>🌐 Полярлық орбита</h3>
+                    <p><strong>Биіктігі:</strong> 600-800 км</p>
+                    <p><strong>Бағыты:</strong> Полюстер арқылы өтеді</p>
+                    <p><strong>Қолданылуы:</strong> Жер бетінің толық картасын жасау</p>
+                    <p><strong>Артықшылығы:</strong> Барлық аймақты бақылау</p>
+                </div>
+            </div>
 
-    <footer>
-      <div class="chip">GreenGamesStudio — презентация</div>
-      <div class="by">Сделал: Мирас</div>
-    </footer>
-  </div>
+            <p style="margin-top: 25px;">
+                Серіктің орбитасын таңдау оның міндетіне байланысты. Байланыс серіктері геостационарлық орбитада, ал Жерді зерттеу серіктері төмен орбитада қозғалады.
+            </p>
+        </section>
 
-  <script>
-    // Simple slide system
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const total = slides.length;
-    document.getElementById('total').textContent = total;
-    let cur = 0;
-    function show(i){
-      if(i<0) i=0; if(i>=total) i=total-1;
-      cur=i;
-      slides.forEach(s=>s.style.display='none');
-      slides[cur].style.display='block';
-      document.getElementById('index').textContent = cur+1;
-      // highlight nav
-      document.querySelectorAll('#navDots button').forEach((b,idx)=>{
-        b.style.opacity = idx===cur?1:0.5;
-      });
-    }
-    document.getElementById('prev').onclick=()=>show(cur-1);
-    document.getElementById('next').onclick=()=>show(cur+1);
+        <section>
+            <h2>Кеплер заңдары</h2>
+            <p>
+                Неміс астрономы <span class="highlight">Иоганн Кеплер</span> (1571-1630) планеталар мен серіктердің қозғалысын сипаттайтын үш маңызды заң ашты. Бұл заңдар жасанды серіктердің орбиталық қозғалысын түсіну үшін негіз болады:
+            </p>
+            
+            <ul class="kepler-laws">
+                <li>
+                    <strong>Бірінші заң (Эллипстер заңы):</strong><br>
+                    Барлық планеталар мен серіктер эллипс тәрізді орбита бойымен қозғалады, ал тартылыс орталығы (Жер) эллипстің бір фокусында орналасады. Дөңгелек орбита — эллипстің ерекше жағдайы, онда екі фокус бір нүктеде орналасады.
+                </li>
+                <li>
+                    <strong>Екінші заң (Аудандар заңы):</strong><br>
+                    Серікті тартылыс орталығымен қосатын радиус-вектор тең уақыт аралығында тең аудандар сызады. Бұл дегеніміз, серік Жерге жақын болғанда жылдам, ал алыс болғанда баяу қозғалады. Осылайша импульс моменті сақталады.
+                </li>
+                <li>
+                    <strong>Үшінші заң (Гармониялық заң):</strong><br>
+                    Орбитаның үлкен жартылай осінің кубының айналу периодының квадратына қатынасы барлық серіктер үшін бірдей тұрақты шама болады: <strong>a³/T² = const</strong>. Бұл заң серіктің биіктігі мен айналу жылдамдығын байланыстырады.
+                </li>
+            </ul>
 
-    // build nav
-    const nav = document.getElementById('navDots');
-    slides.forEach((s,idx)=>{
-      const b = document.createElement('button');
-      b.textContent = 'Слайд ' + (idx+1);
-      b.onclick = ()=>show(idx);
-      nav.appendChild(b);
-    });
+            <div class="formula-box">
+                Үшінші Кеплер заңы: a³/T² = GM/(4π²)
+            </div>
 
-    // init
-    show(0);
+            <p>
+                Кеплер заңдары Исаак Ньютонның бүкіләлемдік тартылыс заңынан туындайды және қазіргі ғарыш миссияларын жоспарлауда қолданылады.
+            </p>
+        </section>
 
-    // Small helper: accept a Sketchfab iframe pasted to the page by the user
-    // If the user later pastes an iframe into the viewer div, the iframe will auto-scale.
-    // You can paste the iframe directly into the HTML at the comment placeholder.
-  </script>
-</body>
-</html>
+        <section>
+            <h2>Серіктердің қолданылуы</h2>
+            <p>
+                Қазіргі уақытта жасанды серіктер адам өмірінің барлық салаларына енген. Олар ғылымнан бастап күнделікті тұрмысқа дейінгі көптеген мәселелерді шешеді:
+            </p>
+            
+            <div class="applications">
+                <div class="app-tag">📡 Телекоммуникация және интернет</div>
+                <div class="app-tag">🛰️ Навигация (GPS, ГЛОНАСС, BeiDou)</div>
+                <div class="app-tag">🌦️ Ауа райын болжау</div>
+                <div class="app-tag">📺 Теледидар және радио таралымы</div>
+                <div class="app-tag">🌍 Жер бетін зерттеу және картография</div>
+                <div class="app-tag">🔬 Ғылыми зерттеулер</div>
+                <div class="app-tag">🛡️ Қорғаныс және қауіпсіздік</div>
+                <div class="app-tag">🌾 Ауыл шаруашылығын мониторинг</div>
+                <div class="app-tag">🔥 Өрт және табиғи апаттарды анықтау</div>
+                <div class="app-tag">🌊 Мұхит және климат зерттеулері</div>
+                <div class="app-tag">🗺️ Геодезия және топография</div>
+                <div class="app-tag">📞 Төтенше байланыс жүйелері</div>
+            </div>
+
+            <h3>Серіктік байланыс</h3>
+            <p>
+                Геостационарлық орбитадағы байланыс серіктері телефон, интернет және теледидар сигналдарын үлкен қашықтыққа жеткізеді. Бір серік Жер бетінің үштен бір бөлігін қамтуға қабілетті.
+            </p>
+
+            <h3>Навигациялық жүйелер</h3>
+            <p>
+                GPS, ГЛОНАСС және басқа жүйелер орташа орбитадағы серіктер арқылы нақты координаттарды анықтайды. Бұл технология көліктерді басқарудан бастап смартфондарға дейін кеңінен қолданылады.
+            </p>
+
+            <h3>Ғылыми зерттеулер</h3>
+            <p>
+                Ғарыштық телескоптар (Хаббл, Джеймс Уэбб) және планеталық зондтар ғаламды зерттеуге, жаңа ашылыстар жасауға мүмкіндік береді. Жер бақылау серіктері климаттық өзгерістерді, орман шаруашылығын және теңіз деңгейін бақылайды.
+            </p>
+        </section>
+
+        <section>
+            <h2>Қорытынды</h2>
+            <p>
+                Жасанды серіктердің қозғалысы классикалық механиканың заңдарына негізделген күрделі процесс. Космостық жылдамдықтар ұғымы серіктерді орбитаға шығару үшін қажетті энергияны анықтауға көмектеседі.
+            </p>
+            <p>
+                Кеплер заңдары планеталар мен серіктердің қозғалысын дәл сипаттайды және олардың орбиталық параметрлерін есептеуге мүмкіндік береді. Бірінші космостық жылдамдық <span class="highlight">(7,9 км/с)</span> серікті орбитада ұстау үшін, ал екінші космостық жылдамдық <span class="highlight">(11,2 км/с)</span> Жерден босап шығу үшін қажет.
+            </p>
+            <p>
+                Әртүрлі типтегі орбиталар әртүрлі мақсаттарға қызмет етеді: төмен орбита Жерді зерттеу үшін, орташа орбита навигация үшін, ал геостационарлық орбита байланыс үшін тиімді. Серіктердің дамуы жаңа технологияларды қолдануға, ғарышты игеруге және адамзаттың білімін кеңейтуге үлкен үлес қосуда.
+            </p>
+            <p>
+                Болашақта серіктік технологиялар одан да дамып, жаңа мүмкіндіктер ашады. Жоғары жылдамдықты ғарыштық интернет, қашықтықтан зондтау және планеталық зерттеулер — барлығы серіктердің дұрыс қозғалысына негізделген.
+            </p>
+        </section>
+
+        <footer>
+            Сделал: Мирас
